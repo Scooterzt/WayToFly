@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>WayTo</groupId>
+    <artifactId>Fly</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <suiteXmlPath>src/test/resources/testngrunfiles/</suiteXmlPath>
+        <suiteXmlFile>all-tests.xml</suiteXmlFile>
+        <chromeDriverPath>src/test/resources/drivers/chromedriver_2_38.exe</chromeDriverPath>
+        <browser>chrome</browser>
+        <!-- On which host you are running your tests: local , jenkins -->
+        <host>local</host>
+
+        <!-- Where you want to run your App testing: local (using your emulators and your real device)
+         or saucelab (using devices hosted over there, note: we don't have real devices on saucelab) -->
+        <!--<appserver>local</appserver>-->
+
+        <!-- Where you want to run your Web testing: local (using your own chrome browser)
+        or saucelab (using saucelabs browsers) -->
+        <webserver>local</webserver>
+
+        <!-- Do you want to capture screenshot: true , false -->
+        <screenshot>true</screenshot>
+    </properties>
+
+    <dependencies>
+        <!--<dependency>-->
+            <!--<groupId>io.appium</groupId>-->
+            <!--<artifactId>java-client</artifactId>-->
+            <!--<version>4.1.2</version>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.seleniumhq.selenium</groupId>-->
+                    <!--<artifactId>selenium-java</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-1.2-api</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.relevantcodes</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>2.41.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.12.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.seleniumhq.selenium</groupId>
+                    <artifactId>htmlunit-driver</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>1.5.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-collections</groupId>
+                    <artifactId>commons-collections</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com.jayway.restassured</groupId>-->
+            <!--<artifactId>rest-assured</artifactId>-->
+            <!--<version>2.9.0</version>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>com.opencsv</groupId>-->
+            <!--<artifactId>opencsv</artifactId>-->
+            <!--<version>3.7</version>-->
+        <!--</dependency>-->
+
+
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.5</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.19.1</version>
+                    <configuration>
+                        <suiteXmlFiles>
+                            <suiteXmlFile>${suiteXmlPath}${suiteXmlFile}</suiteXmlFile>
+                        </suiteXmlFiles>
+                        <systemPropertyVariables>
+                            <host>${host}</host>
+                            <chromeDriverPath>${chromeDriverPath}</chromeDriverPath>
+                            <browser>${browser}</browser>
+                            <!--<appserver>${appserver}</appserver>-->
+                            <webserver>${webserver}</webserver>
+                            <screenshot>${screenshot}</screenshot>
+                        </systemPropertyVariables>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+
+
+</project>
